@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARSTECH & CONSULTS LTD | IT services • design • innovation</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #e0e0e0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* GOLDEN ACCENTS */
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f5e7b2;
+            --gold-dark: #9e7f2a;
+            --bg-dark: #0f1115;
+            --bg-card: #1a1d24;
+            --border-glow: 0 0 0 1px rgba(212, 175, 55, 0.3);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* navigation */
+        nav {
+            background: #0a0c10;
+            border-bottom: 2px solid var(--gold);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(6px);
+            background: rgba(10, 12, 16, 0.95);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--gold);
+            font-weight: 300;
+        }
+        .logo .gold {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* mobile menu */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        /* general sections */
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin-top: 8px;
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .btn-gold {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 36px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            background: var(--gold);
+            color: #0b0c10;
+        }
+
+        /* cards / grid */
+        .services-grid, .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px 20px;
+            text-align: center;
+            border: 1px solid #2f2a1f;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        }
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+        }
+        .service-card i {
+            font-size: 3.2rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .service-card p {
+            color: #b0b0b0;
+        }
+
+        /* board members (photo placeholders) */
+        .board-member {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 30px 15px 25px 15px;
+            text-align: center;
+            border: 1px solid #2b261a;
+            transition: 0.2s;
+        }
+        .board-member:hover {
+            border-color: var(--gold);
+        }
+        .photo-frame {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #2f2a21;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px dashed var(--gold);
+            color: var(--gold);
+            font-size: 1rem;
+            overflow: hidden;   /* for real images */
+        }
+        .photo-frame i {
+            font-size: 3rem;
+            opacity: 0.7;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .board-member h4 {
+            font-size: 1.7rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .board-member .role {
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* about & contact */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .about-text {
+            flex: 2;
+            min-width: 280px;
+            font-size: 1.2rem;
+        }
+        .about-highlight {
+            background: #1a1d24;
+            padding: 25px;
+            border-left: 6px solid var(--gold);
+            border-radius: 18px;
+            margin: 25px 0;
+        }
+
+        .contact-info {
+            flex: 1.2;
+            background: #13161e;
+            padding: 35px;
+            border-radius: 28px;
+            border: 1px solid #312d22;
+        }
+        .contact-info i {
+            color: var(--gold);
+            width: 35px;
+            font-size: 1.5rem;
+        }
+        .contact-info p {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .map-placeholder {
+            background: #0f1118;
+            border-radius: 28px;
+            padding: 35px;
+            border: 1px solid #3b351c;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .map-icon {
+            font-size: 2.8rem;
+            color: var(--gold);
+        }
+
+        /* footer */
+        footer {
+            background: #080a0e;
+            border-top: 1px solid var(--gold-dark);
+            padding: 40px 0;
+            text-align: center;
+            color: #aaa;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #11141c;
+                position: absolute;
+                top: 75px;
+                right: 30px;
+                padding: 25px;
+                border-radius: 15px;
+                border: 1px solid var(--gold);
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            h2 { font-size: 2.2rem; }
+        }
+        @media (max-width: 500px) {
+            .container { padding: 0 20px; }
+        }
+
+        /* hero */
+        .hero {
+            background: linear-gradient(135deg, #0b0e14 0%, #1a1d27 100%);
+            padding: 100px 0;
+            border-bottom: 1px solid #524825;
+        }
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .hero .gold {
+            color: var(--gold);
+        }
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 25px 0 40px;
+            color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+    <div class="container nav-wrapper">
+        <div class="logo"><span>MARSTECH</span><span class="gold"> & CONSULTS</span> <span style="font-size:1rem; color:goldenrod;">LTD</span></div>
+        <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#board">Board</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ========== HOME / HERO ========== -->
+<section id="home" class="hero">
+    <div class="container">
+        <h1>Beyond code.<br><span class="gold">Beyond design.</span></h1>
+        <p>MARSTECH & CONSULTS LTD — your partner in IT services, web development, graphics, and all computer related solutions.</p>
+        <a href="#contact" class="btn-gold"><i class="fas fa-calendar-check" style="margin-right:10px;"></i>Let's innovate</a>
+    </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section id="services">
+    <div class="container">
+        <h2>our expertise</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Dev</h3>
+                <p>Modern, responsive websites & web apps tailored to your brand.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Graphic design</h3>
+                <p>Logos, branding, social media creatives with a golden touch.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-network-wired"></i>
+                <h3>IT consulting</h3>
+                <p>Infrastructure, security, cloud – we cover all computer realms.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>App dev</h3>
+                <p>iOS & Android apps that stand out in the store.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ABOUT (incl. foundation & location) ========== -->
+<section id="about" style="background: #0e1117;">
+    <div class="container">
+        <h2>about marstech</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p style="font-size:1.4rem; color:#f0e6c5;">Founded in <span class="gold">2025</span> with a vision to fuse technology and elegance.</p>
+                <div class="about-highlight">
+                    <p><i class="fas fa-map-pin gold-text" style="margin-right:12px;"></i><strong>Nkrumah road, Karobwa Towers</strong> — fifth floor, room no. F5-2. That's where we turn ideas into reality.</p>
+                    <p style="margin-top:20px;"><i class="fas fa-phone-alt gold-text"></i> +256-780985122  |  +256-742934093<br>
+                    <i class="fas fa-envelope gold-text"></i> marstech25@gmail.com</p>
+                </div>
+                <p>We don't just write code — we build digital experiences. From a startup’s first website to enterprise IT architecture, our team delivers excellence. The gold in our palette reflects the standard we hold.</p>
+            </div>
+            <div class="contact-info">
+                <h3 style="color:var(--gold); margin-bottom:25px;">quick contact</h3>
+                <p><i class="fas fa-phone"></i> +256-780985122</p>
+                <p><i class="fas fa-phone"></i> +256-742934093</p>
+                <p><i class="fas fa-envelope"></i> marstech25@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Karobwa Towers, Rm F5-2, Nkrumah rd.</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri 8:00 - 18:00</p>
+                <div style="margin: 35px 0 0;">
+                    <a href="#" style="color:var(--gold); border:1px solid; padding:8px 20px; border-radius:40px; text-decoration:none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <!-- subtle map / location block -->
+        <div class="map-placeholder">
+            <div class="map-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div><strong style="font-size:1.5rem;">Karobwa Towers, 5th floor</strong><br>Office F5-2, Nkrumah Road. Gold accent door — you can't miss it.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== BOARD OF TRUSTEES ========== -->
+<section id="board">
+    <div class="container">
+        <h2>board of trustees</h2>
+        <p class="gold-text" style="margin-bottom:20px; font-size:1.3rem;">the minds behind the mission</p>
+        <div class="board-grid">
+            <!-- founder -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-katamba">
+                    <i class="fas fa-user-tie"></i> <!-- placeholder icon, you will replace with img -->
+                </div>
+                <h4>Katamba Ashiraf</h4>
+                <div class="role">FOUNDER</div>
+            </div>
+            <!-- chairman -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-menard">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h4>Abongi Menard</h4>
+                <div class="role">CHAIRMAN</div>
+            </div>
+            <!-- awongo allan -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-allan">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h4>Awongo Allan</h4>
+                <div class="role">TRUSTEE</div>
+            </div>
+            <!-- akwam nixon -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-nixon">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <h4>Akwam Nixon</h4>
+                <div class="role">TECHNICAL LEAD</div>
+            </div>
+            <!-- adikini faith -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-faith">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h4>Adikini Faith</h4>
+                <div class="role">TRUSTEE</div>
+            </div>
+            <!-- odot yona -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-yona">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h4>Odot Yona</h4>
+                <div class="role">STRATEGY</div>
+            </div>
+            <!-- walyaula bosco -->
+            <div class="board-member">
+                <div class="photo-frame" id="photo-bosco">
+                    <i class="fas fa-user-ninja"></i>
+                </div>
+                <h4>Walyaula Bosco</h4>
+                <div class="role">OPERATIONS</div>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:35px; color:#b5a375;"><i class="fas fa-camera"></i> (your photos go inside the frames — replace icon with <strong>&lt;img src="..."&gt;</strong>)</p>
+    </div>
+</section>
+
+<!-- ========== CONTACT / LOCATION DETAILS ========== -->
+<section id="contact" style="background: #0a0c12;">
+    <div class="container">
+        <h2>reach us</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; margin: 50px 0;">
+            <div style="flex: 1; min-width: 260px;">
+                <p><i class="fas fa-phone-alt gold-text" style="width: 35px;"></i> +256-780985122 <span style="margin-left:20px;">+256-742934093</span></p>
+                <p><i class="fas fa-envelope gold-text"></i> marstech25@gmail.com</p>
+                <p><i class="fas fa-building gold-text"></i> Karobwa Towers, 5th floor F5-2, Nkrumah road</p>
+                <p><i class="fas fa-calendar-alt gold-text"></i> Established 2025 — fresh, hungry, innovative.</p>
+                <div style="margin: 30px 0;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.24406035215!2d32.576139!3d0.313765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb6afc8c5fef%3A0x8b7d6c8b1b7f6d0!2sKampala!5e0!3m2!1sen!2sug!4v1710000000000!5m2!1sen!2sug" width="100%" height="240" style="border:0; border-radius:24px; filter:grayscale(0.8) sepia(0.4) hue-rotate(5deg);" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 260px; background: #14181f; border-radius: 28px; padding: 35px; border: 1px solid #3b351e;">
+                <h3 style="color:var(--gold);">say hello</h3>
+                <p><i class="fas fa-paper-plane"></i> we reply within 2h</p>
+                <form>
+                    <input type="text" placeholder="your name" style="width:100%; padding:15px; margin:15px 0; background:#0b0e14; border:1px solid #4f4629; border-radius:50px; color:white;">
+                    <input type="email" placeholder="email" style="width:100%; padding:15px; margin:15px 0; background:#0b0e14; border:1px solid #4f4629; border-radius:50px; color:white;">
+                    <textarea placeholder="project idea..." rows="3" style="width:100%; padding:15px; background:#0b0e14; border:1px solid #4f4629; border-radius:24px; color:white;"></textarea>
+                    <button class="btn-gold" style="margin-top:20px; width:100%;"><i class="fab fa-telegram-plane"></i> send message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <p style="font-size:1.5rem; color:var(--gold);">MARSTECH & CONSULTS LTD</p>
+        <p><i class="fas fa-map-marker-alt gold-text"></i> Karobwa Towers, 5th floor F5-2, Nkrumah road, Kampala</p>
+        <p>+256-780985122  |  +256-742934093  |  marstech25@gmail.com</p>
+        <p style="margin-top:25px;">© 2025 — gold standard IT. all rights reserved.</p>
+    </div>
+</footer>
+
+<!-- tiny script for mobile toggle + active link -->
+<script>
+    const toggleBtn = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggleBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+
+    // smooth active link (simple)
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [document.getElementById('home'), document.getElementById('services'), document.getElementById('about'), document.getElementById('board'), document.getElementById('contact')];
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const scrollPos = window.scrollY + 100;
+        sections.forEach(sec => {
+            if (sec && sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+                current = sec.getAttribute('id');
+            }
+        });
+        links.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // close mobile after click
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            navLinks.classList.remove('show');
+        });
+    });
+
+    // (optional) real photo insertion hint: 
+    // You can replace any .photo-frame i with <img src='...' alt='name'> inside the frame.
+    // Example: document.getElementById('photo-katamba').innerHTML = '<img src="katamba.jpg" alt="Katamba">';
+</script>
+
+<!-- hint for putting photos: each .photo-frame is ready for your <img> -->
+</body>
+</html>
